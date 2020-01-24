@@ -1,4 +1,4 @@
-package damian.tab.BankReality;
+package damian.tab.bankreality;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
