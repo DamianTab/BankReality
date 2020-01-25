@@ -30,6 +30,7 @@ public class Account {
     @Type(type = "date")
     private Date creationDate;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "login")
     private Client client;
