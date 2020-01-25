@@ -1,4 +1,4 @@
-package damian.tab.bankreality.database;
+package damian.tab.bankreality.database.model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -9,17 +9,17 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.NotNull;
 
 @EqualsAndHashCode(callSuper = true)
-@Data
 @Entity
 @PrimaryKeyJoinColumn
-public class NaturalPerson extends Client {
+@Data
+public class LegalPerson extends Client {
     @NotNull
     @Column
-    private String name;
+    private double nip;
     @NotNull
     @Column
-    private String surname;
-    @NotNull
+    private String companyName;
     @Column
-    private double idCard;
+    private String companyType;
 }
+

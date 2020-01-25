@@ -1,4 +1,4 @@
-package damian.tab.bankreality.database;
+package damian.tab.bankreality.database.model;
 
 import lombok.Data;
 
