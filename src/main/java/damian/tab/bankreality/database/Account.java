@@ -9,6 +9,8 @@ import java.sql.Date;
 
 @Entity
 @Data
+//For foreign and primary key at the same time
+@Embeddable
 public class Account {
     @Id
     @NotNull

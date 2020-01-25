@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
+@Embeddable
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Client {
 
