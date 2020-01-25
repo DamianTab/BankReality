@@ -1,20 +1,28 @@
 package damian.tab.bankreality.database.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
-@Data
-public class Credit extends BaseModel {
+@Getter
+@Setter
+public class Credit extends BaseModel implements Serializable {
 //    @Id
 //    @NotNull
 //    @GeneratedValue(generator = "credit_generator")
 //    @SequenceGenerator(name = "credit_generator", sequenceName = "credit_sequence", initialValue = 3000000, allocationSize = 10)
 //    private int id;
+
+    @Autowired
+    public Credit(@Qualifier("CreditKey") PrimaryKey key) {
+        this.key = key;
+    }
 
     @NotNull
     @Column
@@ -42,12 +50,14 @@ public class Credit extends BaseModel {
 ////    @EmbeddedId
 //    private Account account;
 
-    @EmbeddedId
-    private CreditKey key;
+//    @EmbeddedId
+//    private CreditKey key;
 
     @Data
-    @EqualsAndHashCode(callSuper = true)
-    private class CreditKey extends PrimaryKey{
+    @EqualsAndHashCode
+    @Component("CreditKey")
+    @Embeddable
+    private class CreditKey implements PrimaryKey{
         @NotNull
         @GeneratedValue(generator = "credit_generator")
         @SequenceGenerator(name = "credit_generator", sequenceName = "credit_sequence", initialValue = 3000000, allocationSize = 10)
