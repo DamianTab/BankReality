@@ -2,15 +2,18 @@ package damian.tab.bankreality.api;
 
 import damian.tab.bankreality.database.model.BaseModel;
 import damian.tab.bankreality.database.model.PrimaryKey;
+import damian.tab.bankreality.database.model.PrimaryKeyAccess;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-public class GenericRESTApi<T extends BaseModel> {
+@RequiredArgsConstructor
+public class GenericRESTApi<T extends PrimaryKeyAccess> {
 
-    @Autowired
-    private GenericDAO<T> dao;
+    private final JpaRepository<T, PrimaryKey> dao;
 
     @GetMapping
     public List<T> list() {
@@ -18,9 +21,11 @@ public class GenericRESTApi<T extends BaseModel> {
     }
 
     @PostMapping
+//    public int create(@RequestBody T entity) {
     public PrimaryKey create(@RequestBody T entity) {
         dao.saveAndFlush(entity);
-        return entity.getKey();
+        return entity.getPrimaryKey();
+//        return 0;
     }
 //
 //    @PutMapping("/{id}")

@@ -1,8 +1,6 @@
 package damian.tab.bankreality.database.model;
 
 import lombok.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -12,17 +10,12 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-public class Credit extends BaseModel implements Serializable {
+public class Credit implements Serializable, PrimaryKeyAccess {
 //    @Id
 //    @NotNull
 //    @GeneratedValue(generator = "credit_generator")
 //    @SequenceGenerator(name = "credit_generator", sequenceName = "credit_sequence", initialValue = 3000000, allocationSize = 10)
 //    private int id;
-
-    @Autowired
-    public Credit(@Qualifier("CreditKey") PrimaryKey key) {
-        this.key = key;
-    }
 
     @NotNull
     @Column
@@ -50,28 +43,12 @@ public class Credit extends BaseModel implements Serializable {
 ////    @EmbeddedId
 //    private Account account;
 
-//    @EmbeddedId
-//    private CreditKey key;
+    @EmbeddedId
+    private CreditKey key;
 
-    @Data
-    @EqualsAndHashCode
-    @Component("CreditKey")
-    @Embeddable
-    private class CreditKey implements PrimaryKey{
-        @NotNull
-        @GeneratedValue(generator = "credit_generator")
-        @SequenceGenerator(name = "credit_generator", sequenceName = "credit_sequence", initialValue = 3000000, allocationSize = 10)
-        private int id;
-
-        @ManyToOne
-        @JoinColumn(name = "login")
-//    @EmbeddedId
-        private Client client;
-
-        @ManyToOne
-        @JoinColumn(name = "accountNumber")
-//    @EmbeddedId
-        private Account account;
+    @Override
+    public PrimaryKey getPrimaryKey() {
+        return key;
     }
 }
 
