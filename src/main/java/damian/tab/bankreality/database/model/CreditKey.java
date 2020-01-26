@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @EqualsAndHashCode
-@Component("CreditKey")
+//@Component("CreditKey")
 @Embeddable
 public class CreditKey implements PrimaryKey{
     @NotNull

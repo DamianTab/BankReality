@@ -1,5 +1,6 @@
 package damian.tab.bankreality.database.model;
 
 public interface PrimaryKeyAccess {
-    PrimaryKey getPrimaryKey();
+    PrimaryKey receivePrimaryKey();
+    int receiveId();
 }

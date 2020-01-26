@@ -47,8 +47,13 @@ public class Credit implements Serializable, PrimaryKeyAccess {
     private CreditKey key;
 
     @Override
-    public PrimaryKey getPrimaryKey() {
+    public PrimaryKey receivePrimaryKey() {
         return key;
+    }
+
+    @Override
+    public int receiveId() {
+        return key.getId();
     }
 }
 
