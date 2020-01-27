@@ -4,14 +4,11 @@ import damian.tab.bankreality.database.model.PrimaryKeyAccess;
 import damian.tab.bankreality.exception.EntityNotFoundException;
 import damian.tab.bankreality.exception.RemovingNecessaryEntityException;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.JDBCException;
-import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.RollbackException;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,9 +44,9 @@ public abstract class GenericRESTApi<T extends PrimaryKeyAccess> {
         if (dao.findById(id).isEmpty()) {
             throw new EntityNotFoundException();
         }
-        try{
+        try {
             dao.deleteById(id);
-        }catch (DataIntegrityViolationException e){
+        } catch (DataIntegrityViolationException e) {
             throw new RemovingNecessaryEntityException();
         }
     }
