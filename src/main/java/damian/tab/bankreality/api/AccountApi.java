@@ -1,14 +1,14 @@
 package damian.tab.bankreality.api;
 
-import damian.tab.bankreality.database.model.Credit;
+import damian.tab.bankreality.database.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/credit")
+@RequestMapping("/account")
 @RestController
-public class CreditApi extends GenericRESTApi<Credit> {
-    public CreditApi(JpaRepository<Credit, Integer> dao) {
+public class AccountApi extends GenericRESTApi<Account> {
+    public AccountApi(JpaRepository<Account, Integer> dao) {
         super(dao);
     }
 }

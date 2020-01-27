@@ -7,9 +7,8 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
-@Embeddable
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Client {
+public class Client implements PrimaryKeyAccess{
 
     @Id
     @NotNull
@@ -22,4 +21,13 @@ public class Client {
     @Column
     private double phoneNumber;
 
+    @Override
+    public int receivePrimaryKey() {
+        return login;
+    }
+
+    @Override
+    public void setPrimaryKey(int primaryKey) {
+        login = primaryKey;
+    }
 }

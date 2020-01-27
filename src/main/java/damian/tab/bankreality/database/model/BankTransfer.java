@@ -4,12 +4,11 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
 @Data
-public class BankTransfer implements Serializable {
+public class BankTransfer implements PrimaryKeyAccess{
 
     @Id
     @NotNull
@@ -25,13 +24,23 @@ public class BankTransfer implements Serializable {
     @Column
     private Date transferDate;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "accountNumberSender")
-    @EmbeddedId
     private Account sender;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "accountNumberReceiver")
-    @EmbeddedId
     private Account receiver;
+
+    @Override
+    public int receivePrimaryKey() {
+        return id;
+    }
+
+    @Override
+    public void setPrimaryKey(int primaryKey) {
+        id = primaryKey;
+    }
 }

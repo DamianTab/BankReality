@@ -9,9 +9,7 @@ import java.sql.Date;
 
 @Entity
 @Data
-//For foreign and primary key at the same time
-@Embeddable
-public class Account {
+public class Account implements PrimaryKeyAccess {
     @Id
     @NotNull
     @GeneratedValue(generator = "account_generator")
@@ -34,4 +32,14 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "login")
     private Client client;
+
+    @Override
+    public int receivePrimaryKey() {
+        return accountNumber;
+    }
+
+    @Override
+    public void setPrimaryKey(int primaryKey) {
+        accountNumber = primaryKey;
+    }
 }

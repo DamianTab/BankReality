@@ -9,7 +9,7 @@ import java.sql.Date;
 
 @Entity
 @Data
-public class Investment implements Serializable {
+public class Investment implements PrimaryKeyAccess {
     @Id
     @NotNull
     @GeneratedValue(generator = "Investment_generator")
@@ -28,8 +28,18 @@ public class Investment implements Serializable {
     @Column
     private int AER;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "accountNumber")
-    @EmbeddedId
     private Account account;
+
+    @Override
+    public int receivePrimaryKey() {
+        return id;
+    }
+
+    @Override
+    public void setPrimaryKey(int primaryKey) {
+        id = primaryKey;
+    }
 }
