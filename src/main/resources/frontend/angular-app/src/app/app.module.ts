@@ -1,22 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {MenubarModule} from 'primeng/menubar';
-
 import { AppComponent } from './app.component';
-import { MenubarComponent } from './menubar/menubar.component';
+import { AppRoutingModule } from './app-routing.module';
+import { MenubarModule } from './menubar/menubar.module';
+import { NaturalPersonModule } from './natural-person/natural-person.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenubarComponent
   ],
   imports: [
     BrowserModule,
-    MenubarModule
-  ],
-  exports: [
-    MenubarComponent
+    MenubarModule,
+    NaturalPersonModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
