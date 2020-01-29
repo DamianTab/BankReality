@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MenubarModule } from './menubar/menubar.module';
 import { NaturalPersonModule } from './natural-person/natural-person.module';
+import { EmiEstimateModule } from './emi-estimate/emi-estimate.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { NaturalPersonModule } from './natural-person/natural-person.module';
     BrowserModule,
     MenubarModule,
     NaturalPersonModule,
+    EmiEstimateModule,
     AppRoutingModule
   ],
   providers: [],

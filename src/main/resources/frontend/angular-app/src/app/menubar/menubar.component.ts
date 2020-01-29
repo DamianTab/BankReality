@@ -41,7 +41,7 @@ export class MenubarComponent implements OnInit {
         icon: 'pi pi-dollar',
         items: [
           { label: 'List', icon: 'pi pi-align-left'},
-          { label: 'Estimate EMI', icon: 'pi pi-chart-line' },
+          { label: 'Estimate EMI', icon: 'pi pi-chart-line', routerLink: ['/credit/emi']},
         ]
       },
       {
