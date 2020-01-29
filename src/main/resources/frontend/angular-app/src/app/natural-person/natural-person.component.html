@@ -1,6 +1,10 @@
-<p-table [columns]="cols" [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="13">
+<p-table #tab [columns]="cols" [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="13">
   <ng-template pTemplate="caption">
       List of Cars
+      <div style="text-align: right">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input type="text" pInputText size="50" placeholder="Global Filter" (input)="tab.filterGlobal($event.target.value, 'contains')" style="width:auto">
+      </div>
   </ng-template>
   <ng-template pTemplate="header" let-columns>
       <tr>

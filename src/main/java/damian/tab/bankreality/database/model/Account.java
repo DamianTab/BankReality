@@ -33,13 +33,13 @@ public class Account implements PrimaryKeyAccess {
     @JoinColumn(name = "login")
     private Client client;
 
-    @Override
-    public int receivePrimaryKey() {
-        return accountNumber;
-    }
+        @Override
+        public int receivePrimaryKey() {
+            return accountNumber;
+        }
 
-    @Override
-    public void setPrimaryKey(int primaryKey) {
-        accountNumber = primaryKey;
-    }
+        @Override
+        public void setPrimaryKey(int primaryKey) {
+            accountNumber = primaryKey;
+        }
 }
