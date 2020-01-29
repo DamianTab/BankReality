@@ -1,16 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
+import {MenubarModule} from 'primeng/menubar';
+
 import { AppComponent } from './app.component';
+import { MenubarComponent } from './menubar/menubar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenubarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    MenubarModule
+  ],
+  exports: [
+    MenubarComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
