@@ -15,7 +15,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public abstract class GenericRESTApi<T extends PrimaryKeyAccess> {
 
-    private final JpaRepository<T, Integer> dao;
+    protected final JpaRepository<T, Integer> dao;
 
     @GetMapping
     public List<T> list() {

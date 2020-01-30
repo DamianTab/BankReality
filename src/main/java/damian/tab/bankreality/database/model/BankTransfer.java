@@ -1,11 +1,20 @@
 package damian.tab.bankreality.database.model;
 
 import lombok.Data;
+import org.springframework.data.relational.core.sql.In;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
 
+
+@NamedStoredProcedureQuery(name = "makeTransfer",
+        procedureName = "Bank.makeTransfer",
+        parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "pAmount", type = Double.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "pSender", type = Integer.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "pReceiver", type = Integer.class)
+        })
 @Entity
 @Data
 public class BankTransfer implements PrimaryKeyAccess{
