@@ -22,7 +22,7 @@ export class NaturalPersonComponent implements OnInit {
 
   cols: any[];
 
-  colsNumber: any;
+  // colsNumber: any;
 
   entityName: string = 'Natural Person';
 
@@ -42,9 +42,9 @@ export class NaturalPersonComponent implements OnInit {
       { field: 'surname', header: '5' },
       { field: 'idCard', header: '6' },
     ];
-    const size = this.cols.length;
-    this.colsNumber = Array(this.cols.length).fill(1).map((x, i) => i); // [0,1,2,3,4]
-    console.log(this.colsNumber)
+    // const size = this.cols.length;
+    // this.colsNumber = Array(this.cols.length).fill(1).map((x, i) => i); // [0,1,2,3,4]
+    // console.log(this.colsNumber)
   }
 
 
