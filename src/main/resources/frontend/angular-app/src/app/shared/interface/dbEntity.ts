@@ -1,3 +1,3 @@
 interface DbEntity<T> {
-  getNewObject(): T;
+  buildNewObject(): T;
 }

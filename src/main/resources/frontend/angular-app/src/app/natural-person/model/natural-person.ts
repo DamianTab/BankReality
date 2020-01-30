@@ -6,13 +6,7 @@ export class NaturalPerson implements DbEntity<NaturalPerson>{
   surname: string;
   idCard: number;
 
-  getNewObject(): NaturalPerson {
-    this.login = undefined;
-    this.address = undefined;
-    this.phoneNumber = undefined;
-    this.name = undefined;
-    this.surname = undefined;
-    this.idCard = undefined;
-    return this;
+  buildNewObject(): NaturalPerson {
+    return new NaturalPerson();
   }
 }

@@ -7,10 +7,9 @@ import { Observable } from 'rxjs';
 })
 export class EntityService<T> {
 
-  private readonly URL: string = '/natural';
+  URL: string;
 
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   public getAll(): Observable<T[]> {
     return this.http.get<T[]>(this.URL);

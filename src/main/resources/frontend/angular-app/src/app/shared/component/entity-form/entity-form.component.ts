@@ -1,20 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { EntityService } from '../../service/entity.service';
 
 @Component({
-  selector: 'app-entity-form',
+  selector: 'bk-entity-form',
   templateUrl: './entity-form.component.html',
   styleUrls: ['./entity-form.component.scss']
 })
 export class EntityFormComponent<T extends DbEntity<T>> implements OnInit {
 
-  // Manually
+  @Input()
   tempEntity: T;
+  @Input()
   cols: any[];
-
+  @Input()
+  entityName: string;
+  @Input()
+  url: string;
 
   displayDialog: boolean;
-
 
   selectedEntity: T;
 
@@ -25,24 +28,21 @@ export class EntityFormComponent<T extends DbEntity<T>> implements OnInit {
 
   colsSizeArray: any;
 
-  entityName: string = 'Natural Person';
-
   constructor(private entityService: EntityService<T>) {
   }
 
   ngOnInit() {
+    this.entityService.URL = this.url;
     this.entityService.getAll().subscribe(entities => {
       this.entityArray = entities;
     });
-
-    console.log(this.cols[1].field);
     this.colsSizeArray = Array(this.cols.length).fill(1).map((x, i) => i); // [0,1,2,3,4]
   }
 
 
   showDialogToAdd() {
     this.isNew = true;
-    this.tempEntity = this.tempEntity.getNewObject();
+    this.tempEntity = this.tempEntity.buildNewObject();
     this.displayDialog = true;
   }
 
@@ -64,7 +64,7 @@ export class EntityFormComponent<T extends DbEntity<T>> implements OnInit {
       });
     }
     this.entityArray = entities;
-    this.tempEntity = null;
+    this.tempEntity = this.tempEntity.buildNewObject();
     this.displayDialog = false;
   }
 
@@ -75,7 +75,7 @@ export class EntityFormComponent<T extends DbEntity<T>> implements OnInit {
         this.entityArray = this.entityArray.filter((val, i) => i != index);
       });
     }
-    this.tempEntity = null;
+    this.tempEntity = this.tempEntity.buildNewObject();
     this.displayDialog = false;
   }
 
@@ -90,7 +90,7 @@ export class EntityFormComponent<T extends DbEntity<T>> implements OnInit {
   }
 
   private cloneEntity(c: T): T {
-    let entity = this.tempEntity.getNewObject();
+    let entity = this.tempEntity.buildNewObject();
     for (let prop in c) {
       entity[prop] = c[prop];
     }
