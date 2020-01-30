@@ -12,6 +12,7 @@ import { LegalPersonModule } from './legal-person/legal-person.module';
 import { AccountModule } from './account/account.module';
 import { CreditModule } from './credit/credit.module';
 import { BankTransferModule } from './bank-transfer/bank-transfer.module';
+import { InvestmentModule } from './investment/investment.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { BankTransferModule } from './bank-transfer/bank-transfer.module';
     AccountModule,
     CreditModule,
     BankTransferModule,
+    InvestmentModule,
     AppRoutingModule
   ],
   providers: [],

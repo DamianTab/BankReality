@@ -6,12 +6,14 @@ import { LegalPersonComponent } from './legal-person/legal-person.component';
 import { AccountComponent } from './account/account.component';
 import { CreditComponent } from './credit/credit.component';
 import { BankTransferComponent } from './bank-transfer/bank-transfer.component';
+import { InvestmentComponent } from './investment/investment.component';
 
 
 const routes: Routes = [
   { path: 'natural', component: NaturalPersonComponent },
   { path: 'legal', component: LegalPersonComponent },
   { path: 'account', component: AccountComponent },
+  { path: 'investment', component: InvestmentComponent },
   {
     path: 'credit',
     children: [
