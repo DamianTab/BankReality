@@ -27,26 +27,30 @@ export class MenubarComponent implements OnInit {
       {
         label: 'Legal Person',
         icon: 'pi pi-briefcase',
+        routerLink: ['/legal']
       },
       {
         label: 'Account',
         icon: 'pi pi-id-card',
+        routerLink: ['/account']
       },
       {
         label: 'Bank Transfer',
         icon: 'pi pi-arrow-right',
+        routerLink: ['/transfer']
       },
       {
         label: 'Credit',
         icon: 'pi pi-dollar',
         items: [
-          { label: 'List', icon: 'pi pi-align-left'},
+          { label: 'List', icon: 'pi pi-align-left', routerLink: ['/credit'] },
           { label: 'Estimate EMI', icon: 'pi pi-chart-line', routerLink: ['/credit/emi']},
         ]
       },
       {
         label: 'Investment',
         icon: 'pi pi-inbox',
+        routerLink: ['/investment']
       }
     ];
   }

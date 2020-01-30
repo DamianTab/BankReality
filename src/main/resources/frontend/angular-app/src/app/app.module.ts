@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MenubarModule } from './menubar/menubar.module';
 import { NaturalPersonModule } from './natural-person/natural-person.module';
 import { EmiEstimateModule } from './emi-estimate/emi-estimate.module';
-import { ObjectKeysPipe } from './shared/pipe/object-keys/object-keys.pipe';
+import { LegalPersonModule } from './legal-person/legal-person.module';
 
 @NgModule({
   declarations: [
@@ -16,10 +16,11 @@ import { ObjectKeysPipe } from './shared/pipe/object-keys/object-keys.pipe';
   ],
   imports: [
     BrowserModule,
-    MenubarModule,
-    NaturalPersonModule,
     EmiEstimateModule,
     HttpClientModule,
+    MenubarModule,
+    NaturalPersonModule,
+    LegalPersonModule,
     AppRoutingModule
   ],
   providers: [],
