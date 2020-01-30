@@ -3,11 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { NaturalPersonComponent } from './natural-person/natural-person.component';
 import { EmiEstimateComponent } from './emi-estimate/emi-estimate.component';
 import { LegalPersonComponent } from './legal-person/legal-person.component';
+import { AccountComponent } from './account/account.component';
 
 
 const routes: Routes = [
   { path: 'natural', component: NaturalPersonComponent },
   { path: 'legal', component: LegalPersonComponent },
+  { path: 'account', component: AccountComponent },
   {
     path: 'credit',
     children: [

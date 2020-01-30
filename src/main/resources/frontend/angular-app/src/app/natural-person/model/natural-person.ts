@@ -9,4 +9,6 @@ export class NaturalPerson implements DbEntity<NaturalPerson>{
   buildNewObject(): NaturalPerson {
     return new NaturalPerson();
   }
+  toRow() {}
+  fromRow() {}
 }

@@ -1,4 +1,5 @@
-export class LegalPerson {
+export class LegalPerson implements DbEntity<LegalPerson>{
+
   login: number;
   address: string;
   phoneNumber?: number;
@@ -9,4 +10,7 @@ export class LegalPerson {
   buildNewObject(): LegalPerson {
     return new LegalPerson();
   }
+
+  toRow() {}
+  fromRow() {}
 }

@@ -35,6 +35,7 @@ export class EntityFormComponent<T extends DbEntity<T>> implements OnInit {
     this.entityService.URL = this.url;
     this.entityService.getAll().subscribe(entities => {
       this.entityArray = entities;
+      console.log(entities);
     });
     this.colsSizeArray = Array(this.cols.length).fill(1).map((x, i) => i); // [0,1,2,3,4]
   }

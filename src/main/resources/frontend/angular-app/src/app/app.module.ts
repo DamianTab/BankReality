@@ -9,6 +9,7 @@ import { MenubarModule } from './menubar/menubar.module';
 import { NaturalPersonModule } from './natural-person/natural-person.module';
 import { EmiEstimateModule } from './emi-estimate/emi-estimate.module';
 import { LegalPersonModule } from './legal-person/legal-person.module';
+import { AccountModule } from './account/account.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LegalPersonModule } from './legal-person/legal-person.module';
     MenubarModule,
     NaturalPersonModule,
     LegalPersonModule,
+    AccountModule,
     AppRoutingModule
   ],
   providers: [],
