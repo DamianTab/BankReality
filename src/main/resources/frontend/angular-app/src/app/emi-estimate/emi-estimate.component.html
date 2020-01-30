@@ -10,30 +10,51 @@
            the loan is paid off in full.</div>
 
 
-          <div class="p-grid p-justify-center">
-            <div class="p-col-fixed">
-                <label for="amount">Loan Amount</label>
+          <div class="p-grid p-justify space">
+            <div class="p-col-2 p-offset-2">
+                <label for="amount">Loan Amount:</label>
             </div>
-            <div class="p-col-2">
-              <input pInputText id="amount" [(ngModel)]="loanAmount" />
-            </div>
-            <div class="p-col">
-              <label for="interest">Interest Rate</label>
-            </div>
-            <div class="p-col">
-              <input pInputText id="interest" [(ngModel)]="interestRate" />
-            </div>
-            <div class="p-col">
-              <label for="time">Loan Time</label>
-            </div>
-            <div class="p-col">
-              <input pInputText id="time" [(ngModel)]="loanTime" />
+            <div class="p-col-fixed ui-inputgroup">
+              <input pInputText id="amount" placeholder="Dollars" [pKeyFilter]="numberRegex" [(ngModel)]="loanAmount" />
+              <span class="ui-inputgroup-addon">$</span>
             </div>
           </div>
 
-      <p-footer>
-          <button pButton type="button" label="Save" icon="pi pi-check" style="margin-right: .25em"></button>
-          <button pButton type="button" label="Cancel" icon="pi pi-times" class="ui-button-secondary"></button>
+          <div class="p-grid p-justify space">
+            <div class="p-col-2 p-offset-2">
+              <label for="interest">Interest Rate:</label>
+            </div>
+            <div class="p-col-fixed ui-inputgroup">
+              <input pInputText id="interest" placeholder="Percent" [pKeyFilter]="numberRegex" [(ngModel)]="interestRate" />
+              <span class="ui-inputgroup-addon">%</span>
+            </div>
+          </div>
+
+          <div class="p-grid p-justify space">
+            <div class="p-col-2 p-offset-2">
+              <label for="time">Loan Time:</label>
+            </div>
+            <div class="p-col-fixed ui-inputgroup">
+              <input pInputText id="time" placeholder="Months" [pKeyFilter]="numberRegex" [(ngModel)]="loanTime" />
+              <span class="ui-inputgroup-addon"><i class="pi pi-calendar" style="line-height: 1.25;"></i></span>              </div>
+          </div>
+
+          <hr>
+
+          <div class="p-grid p-justify space">
+            <div class="p-col-2 p-offset-2">
+              <label for="emi">EMI Value:</label>
+            </div>
+            <div class="p-col-fixed ui-inputgroup">
+              <input pInputText id="emi" placeholder="Estimated EMI value" disabled="true" [(ngModel)]="emi" />
+              <span class="ui-inputgroup-addon">$</span>
+            </div>
+          </div>
+
+      <p-footer >
+        <div class="center">
+          <button pButton type="button" label="Estimate" icon="pi pi-chart-line" style="margin-right: .25em"></button>
+        </div>
       </p-footer>
     </p-card>
   </div>

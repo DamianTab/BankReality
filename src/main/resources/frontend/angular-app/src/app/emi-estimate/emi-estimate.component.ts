@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmiEstimateComponent implements OnInit {
 
+  numberRegex: RegExp = /[0-9]+/;
+
   loanAmount: number;
   interestRate: number;
   loanTime: number;
+  emi: number;
 
   constructor() { }
 
