@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmiEstimateService } from './service/emi-estimate.service';
 
 @Component({
   selector: 'app-emi-estimate',
@@ -14,9 +15,15 @@ export class EmiEstimateComponent implements OnInit {
   loanTime: number;
   emi: number;
 
-  constructor() { }
+  constructor(private emiService: EmiEstimateService) { }
 
   ngOnInit() {
+  }
+
+  calculateEmi() {
+    this.emiService.estimateEmi(this.loanAmount, this.interestRate, this.loanTime).subscribe(( value => {
+      this.emi = value;
+    }));
   }
 
 }
