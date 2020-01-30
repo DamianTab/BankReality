@@ -1,4 +1,4 @@
-<p-table #tab [columns]="cols" [value]="cars" selectionMode="single" [(selection)]="selectedCar" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="13">
+<p-table #tab [columns]="cols" [value]="entityArray" selectionMode="single" [(selection)]="selectedEntity" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="13">
   <ng-template pTemplate="caption">
       List of Cars
       <div style="text-align: right">
@@ -29,37 +29,37 @@
 </p-table>
 
 <p-dialog header="Car Details" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '300px'}">
-  <div class="ui-g ui-fluid" *ngIf="car">
+  <div class="ui-g ui-fluid" *ngIf="tempEntity">
       <div class="ui-g-12">
           <div class="ui-g-4">
-              <label for="vin">Vin</label>
+              <label for="vin">idCard</label>
           </div>
           <div class="ui-g-8">
-              <input pInputText id="vin" [(ngModel)]="car.vin" autofocus />
+              <input pInputText id="vin" [(ngModel)]="tempEntity.idCard" autofocus />
           </div>
       </div>
       <div class="ui-g-12">
           <div class="ui-g-4">
-              <label for="year">Year</label>
+              <label for="year">Name</label>
           </div>
           <div class="ui-g-8">
-              <input pInputText id="year" [(ngModel)]="car.year" />
+              <input pInputText id="year" [(ngModel)]="tempEntity.name" />
           </div>
       </div>
       <div class="ui-g-12">
           <div class="ui-g-4">
-              <label for="brand">Brand</label>
+              <label for="brand">Surname</label>
           </div>
           <div class="ui-g-8">
-              <input pInputText id="brand" [(ngModel)]="car.brand" />
+              <input pInputText id="brand" [(ngModel)]="tempEntity.surname" />
           </div>
       </div>
       <div class="ui-g-12">
           <div class="ui-g-4">
-              <label for="color">Color</label>
+              <label for="color">Adress</label>
           </div>
           <div class="ui-g-8">
-              <input pInputText id="color" [(ngModel)]="car.color" />
+              <input pInputText id="color" [(ngModel)]="tempEntity.address" />
           </div>
       </div>
   </div>

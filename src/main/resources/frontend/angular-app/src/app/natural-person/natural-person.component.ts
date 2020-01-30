@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NaturalPerson } from './model/natural-person';
+import { NaturalPersonService } from './service/natural-person.service';
 
 @Component({
   selector: 'bk-natural-person',
@@ -9,184 +11,83 @@ export class NaturalPersonComponent implements OnInit {
 
   displayDialog: boolean;
 
-  car: Car = {};
+  tempEntity: NaturalPerson = new NaturalPerson();
 
-  selectedCar: Car;
+  selectedEntity: NaturalPerson;
 
-  newCar: boolean;
+  isNew: boolean;
 
-  cars: Car[] = new Array();
+  entityArray: NaturalPerson[] = new Array();
 
   cols: any[];
 
-  constructor() { }
+  constructor(private entityService: NaturalPersonService) { }
 
   ngOnInit() {
-    // this.carService.getCarsSmall().then(cars => this.cars = cars);
-    let car = new Car();
-    car.color = 'zolty';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin11122';
-    car.year = 1999;
-    this.cars.push(car);
+    this.entityService.getAll().subscribe(entities => {
+      this.entityArray = entities;
+    });
 
-    car = new Car();
-    car.color = 'ciemy';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin1112233';
-    car.year = 2000;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'zolty';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin11122';
-    car.year = 1999;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'ciemy';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin1112233';
-    car.year = 2000;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'zolty';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin11122';
-    car.year = 1999;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'ciemy';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin1112233';
-    car.year = 2000;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'zolty';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin11122';
-    car.year = 1999;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'ciemy';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin1112233';
-    car.year = 2000;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'zolty';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin11122';
-    car.year = 1999;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'ciemy';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin1112233';
-    car.year = 2000;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'zolty';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin11122';
-    car.year = 1999;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'ciemy';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin1112233';
-    car.year = 2000;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'zolty';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin11122';
-    car.year = 1999;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'ciemy';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin1112233';
-    car.year = 2000;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'zolty';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin11122';
-    car.year = 1999;
-    this.cars.push(car);
-
-    car = new Car();
-    car.color = 'ciemy';
-    car.brand = 'brandaaaa';
-    car.vin = 'vin1112233';
-    car.year = 2000;
-    this.cars.push(car);
 
     this.cols = [
-      { field: 'vin', header: 'Vin' },
-      { field: 'year', header: 'Year' },
-      { field: 'brand', header: 'Brand' },
-      { field: 'color', header: 'Color' }
+      { field: 'login', header: '1' },
+      { field: 'address', header: '2' },
+      { field: 'phoneNumber', header: '3' },
+      { field: 'name', header: '4' },
+      { field: 'surname', header: '5' },
+      { field: 'idCard', header: '6' },
     ];
   }
 
   showDialogToAdd() {
-    this.newCar = true;
-    this.car = {};
+    this.isNew = true;
+    this.tempEntity = new NaturalPerson();
     this.displayDialog = true;
   }
 
   save() {
-    let cars = [...this.cars];
-    if (this.newCar)
-      cars.push(this.car);
-    else
-      cars[this.cars.indexOf(this.selectedCar)] = this.car;
-
-    this.cars = cars;
-    this.car = null;
+    const entities = [...this.entityArray];
+    if (this.isNew) {
+      const temp = this.tempEntity;
+      this.entityService.create(temp).subscribe(id => {
+        temp.login = id;
+        this.entityArray.push(temp);
+      });
+    } else {
+      const temp = this.tempEntity;
+      const selected = this.selectedEntity;
+      this.entityService.edit(temp).subscribe(() => {
+        entities[this.entityArray.indexOf(selected)] = temp;
+      });
+    }
+    this.entityArray = entities;
+    this.tempEntity = null;
     this.displayDialog = false;
   }
 
   delete() {
-    let index = this.cars.indexOf(this.selectedCar);
-    this.cars = this.cars.filter((val, i) => i != index);
-    this.car = null;
+    if (!this.isNew) {
+      const index = this.entityArray.indexOf(this.selectedEntity);
+      this.entityService.delete(this.selectedEntity.login).subscribe(() => {
+        this.entityArray = this.entityArray.filter((val, i) => i != index);
+      });
+    }
+    this.tempEntity = null;
     this.displayDialog = false;
   }
 
   onRowSelect(event) {
-    this.newCar = false;
-    this.car = this.cloneCar(event.data);
+    this.isNew = false;
+    this.tempEntity = this.cloneCar(event.data);
     this.displayDialog = true;
   }
 
-  cloneCar(c: Car): Car {
-    let car = {};
+  private cloneCar(c: NaturalPerson): NaturalPerson {
+    let entity = new NaturalPerson();
     for (let prop in c) {
-      car[prop] = c[prop];
+      entity[prop] = c[prop];
     }
-    return car;
+    return entity;
   }
 
-}
-
-class Car {
-  vin?: string;
-  year?: number;
-  brand?: string;
-  color?: string;
 }

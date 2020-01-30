@@ -13,7 +13,7 @@ export class NaturalPersonService {
   constructor(private http: HttpClient) {
   }
 
-  public findAll(): Observable<NaturalPerson[]> {
+  public getAll(): Observable<NaturalPerson[]> {
     return this.http.get<NaturalPerson[]>(this.URL);
   }
 
@@ -25,7 +25,7 @@ export class NaturalPersonService {
     return this.http.put<NaturalPerson>(this.URL + '/' + person.login, person);
   }
 
-  public delete(id: string) {
+  public delete(id: number) {
     return this.http.delete<NaturalPerson>(this.URL + '/' + id);
   }
 
