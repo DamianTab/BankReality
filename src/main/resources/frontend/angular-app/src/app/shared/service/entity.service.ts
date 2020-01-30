@@ -5,6 +5,7 @@ import { tap } from 'rxjs/operators';
 import { Account } from '../../account/model/account';
 import { Credit } from '../../credit/model/credit';
 import { Client } from '../class/client/client';
+import { BankTransfer } from '../../bank-transfer/model/bank-transfer';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,10 @@ export class EntityService<T extends DbEntity<T>> {
       // Credit
       entity['clientId'] = entity['client']['login'];
       entity['accountId'] = entity['account']['accountNumber'];
+    } else if (entity['transferAmount']) {
+      // Bank Transfer
+      entity['senderId'] = entity['sender']['accountNumber'];
+      entity['receiverId'] = entity['receiver']['accountNumber'];
     }
   }
 
@@ -74,6 +79,12 @@ export class EntityService<T extends DbEntity<T>> {
       entity.client.login = entity.clientId;
       entity.account = new Account();
       entity.account.accountNumber = entity.accountId;
+    } else if (entity instanceof BankTransfer){
+      // Bank Transfer
+      entity.sender = new Account();
+      entity.sender.accountNumber = entity.senderId;
+      entity.receiver = new Account();
+      entity.receiver.accountNumber = entity.receiverId;
     }
     return entity;
   }

@@ -5,6 +5,7 @@ import { EmiEstimateComponent } from './emi-estimate/emi-estimate.component';
 import { LegalPersonComponent } from './legal-person/legal-person.component';
 import { AccountComponent } from './account/account.component';
 import { CreditComponent } from './credit/credit.component';
+import { BankTransferComponent } from './bank-transfer/bank-transfer.component';
 
 
 const routes: Routes = [
@@ -14,8 +15,15 @@ const routes: Routes = [
   {
     path: 'credit',
     children: [
-      {path: '', component: CreditComponent},
+      { path: '', component: CreditComponent },
       { path: 'emi', component: EmiEstimateComponent },
+    ]
+  },
+  {
+    path: 'transfer',
+    children: [
+      { path: '', component: BankTransferComponent },
+      // { path: 'emi', component: EmiEstimateComponent },
     ]
   },
   { path: '**', redirectTo: '' }

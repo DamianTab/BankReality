@@ -11,6 +11,7 @@ import { EmiEstimateModule } from './emi-estimate/emi-estimate.module';
 import { LegalPersonModule } from './legal-person/legal-person.module';
 import { AccountModule } from './account/account.module';
 import { CreditModule } from './credit/credit.module';
+import { BankTransferModule } from './bank-transfer/bank-transfer.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CreditModule } from './credit/credit.module';
     LegalPersonModule,
     AccountModule,
     CreditModule,
+    BankTransferModule,
     AppRoutingModule
   ],
   providers: [],
