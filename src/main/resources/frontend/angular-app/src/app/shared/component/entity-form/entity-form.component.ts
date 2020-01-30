@@ -6,10 +6,10 @@ import { EntityService } from '../../service/entity.service';
   templateUrl: './entity-form.component.html',
   styleUrls: ['./entity-form.component.scss']
 })
-export class EntityFormComponent <T extends DbEntity<T>> implements OnInit {
+export class EntityFormComponent<T extends DbEntity<T>> implements OnInit {
 
-  // Constructor
-  tempEntity: T = new T();
+  // Manually
+  tempEntity: T;
   cols: any[];
 
 
@@ -27,22 +27,13 @@ export class EntityFormComponent <T extends DbEntity<T>> implements OnInit {
 
   entityName: string = 'Natural Person';
 
-  constructor(private entityService: EntityService<T>) { }
+  constructor(private entityService: EntityService<T>) {
+  }
 
   ngOnInit() {
     this.entityService.getAll().subscribe(entities => {
       this.entityArray = entities;
     });
-
-
-    this.cols = [
-      { field: 'login', header: 'Login' },
-      { field: 'address', header: '2' },
-      { field: 'phoneNumber', header: '3' },
-      { field: 'name', header: '4' },
-      { field: 'surname', header: '5' },
-      { field: 'idCard', header: '6' },
-    ];
 
     console.log(this.cols[1].field);
     this.colsSizeArray = Array(this.cols.length).fill(1).map((x, i) => i); // [0,1,2,3,4]
@@ -51,7 +42,7 @@ export class EntityFormComponent <T extends DbEntity<T>> implements OnInit {
 
   showDialogToAdd() {
     this.isNew = true;
-    this.tempEntity = new T();
+    this.tempEntity = this.tempEntity.getNewObject();
     this.displayDialog = true;
   }
 
@@ -60,7 +51,9 @@ export class EntityFormComponent <T extends DbEntity<T>> implements OnInit {
     if (this.isNew) {
       const temp = this.tempEntity;
       this.entityService.create(temp).subscribe(id => {
-        temp.login = id;
+        if (temp['id']) temp['id'] = id;
+        else if (temp['accountNumber']) temp['accountNumber'] = id;
+        else temp['login'] = id;
         this.entityArray.push(temp);
       });
     } else {
@@ -78,7 +71,7 @@ export class EntityFormComponent <T extends DbEntity<T>> implements OnInit {
   delete() {
     if (!this.isNew) {
       const index = this.entityArray.indexOf(this.selectedEntity);
-      this.entityService.delete(this.selectedEntity.login).subscribe(() => {
+      this.entityService.delete(this.selectedEntity).subscribe(() => {
         this.entityArray = this.entityArray.filter((val, i) => i != index);
       });
     }
@@ -97,7 +90,7 @@ export class EntityFormComponent <T extends DbEntity<T>> implements OnInit {
   }
 
   private cloneEntity(c: T): T {
-    let entity = new T();
+    let entity = this.tempEntity.getNewObject();
     for (let prop in c) {
       entity[prop] = c[prop];
     }

@@ -28,7 +28,7 @@ export class EntityService<T> {
     return this.http.delete<T>(this.URL + '/' + this.receiveId(entity));
   }
 
-  private receiveId(entity: T){
+  private receiveId(entity: T) {
     let identifier;
     identifier = entity['id'] ? entity['id'] : undefined;
     identifier = entity['accountNumber'] ? entity['accountNumber'] : undefined;
