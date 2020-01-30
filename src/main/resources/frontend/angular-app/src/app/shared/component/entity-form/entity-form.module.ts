@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NaturalPersonComponent } from './natural-person.component';
+import { EntityFormComponent } from "./entity-form.component";
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
 import { FormsModule } from '@angular/forms';
@@ -9,11 +9,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-import { ObjectKeysPipe } from '../shared/pipe/object-keys/object-keys.pipe';
-import { ObjectKeysModule } from '../shared/pipe/object-keys/object-keys.module';
+import { ObjectKeysModule } from '../../pipe/object-keys/object-keys.module';
+
+
 
 @NgModule({
-  declarations: [NaturalPersonComponent],
+  declarations: [EntityFormComponent],
   imports: [
     CommonModule,
     TableModule,
@@ -24,6 +25,6 @@ import { ObjectKeysModule } from '../shared/pipe/object-keys/object-keys.module'
     ObjectKeysModule,
     FormsModule
   ],
-  exports: [NaturalPersonComponent],
+  exports: [EntityFormComponent]
 })
-export class NaturalPersonModule { }
+export class EntityFormModule { }
