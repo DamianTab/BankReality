@@ -31,54 +31,16 @@
 <p-dialog header="{{entityName}} Details" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '450px'}">
   <div class="ui-g ui-fluid" *ngIf="tempEntity">
 
-    <ng-container *ngFor="let item of tempEntity | keys">
+    <ng-container *ngFor="let number of colsSizeArray">
       <div class="ui-g-12">
         <div class="ui-g-4">
-          <!-- todo poprawic na poprawne nazwy z headera -->
-            <label for="myId">{{item}}:</label>
+            <label for="myId">{{cols[number].header}}:</label>
         </div>
         <div class="ui-g-8">
-            <input pInputText id="myId" [(ngModel)]="tempEntity[item]" />
+            <input pInputText id="myId" [(ngModel)]="tempEntity[cols[number].field]" />
         </div>
       </div>
     </ng-container>
-
-
-
-    <!-- <div class="ui-g-12">
-          <div class="ui-g-4">
-              <label for="vin">idCard</label>
-          </div>
-          <div class="ui-g-8">
-              <input pInputText id="vin" [(ngModel)]="tempEntity.idCard" autofocus />
-          </div>
-      </div>
-      <div class="ui-g-12">
-          <div class="ui-g-4">
-              <label for="year">Name</label>
-          </div>
-          <div class="ui-g-8">
-              <input pInputText id="year" [(ngModel)]="tempEntity.name" />
-          </div>
-      </div>
-      <div class="ui-g-12">
-          <div class="ui-g-4">
-              <label for="brand">Surname</label>
-          </div>
-          <div class="ui-g-8">
-              <input pInputText id="brand" [(ngModel)]="tempEntity.surname" />
-          </div>
-      </div>
-      <div class="ui-g-12">
-          <div class="ui-g-4">
-              <label for="color">Adress</label>
-          </div>
-          <div class="ui-g-8">
-              <input pInputText id="color" [(ngModel)]="tempEntity.address" />
-          </div>
-      </div> -->
-
-
 
   </div>
 

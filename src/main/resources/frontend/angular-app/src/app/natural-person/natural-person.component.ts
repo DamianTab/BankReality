@@ -22,7 +22,7 @@ export class NaturalPersonComponent implements OnInit {
 
   cols: any[];
 
-  // colsNumber: any;
+  colsSizeArray: any;
 
   entityName: string = 'Natural Person';
 
@@ -42,9 +42,9 @@ export class NaturalPersonComponent implements OnInit {
       { field: 'surname', header: '5' },
       { field: 'idCard', header: '6' },
     ];
-    // const size = this.cols.length;
-    // this.colsNumber = Array(this.cols.length).fill(1).map((x, i) => i); // [0,1,2,3,4]
-    // console.log(this.colsNumber)
+
+    console.log(this.cols[1].field);
+    this.colsSizeArray = Array(this.cols.length).fill(1).map((x, i) => i); // [0,1,2,3,4]
   }
 
 
@@ -56,12 +56,6 @@ export class NaturalPersonComponent implements OnInit {
 
   save() {
     const entities = [...this.entityArray];
-    const lol = Object.keys(this.selectedEntity);
-    // console.log(Object.keys(this.selectedEntity));
-    console.log(lol[0]);
-    // console.log(this.cols.field[lol[0]]);
-
-    console.log(this.tempEntity);
     if (this.isNew) {
       const temp = this.tempEntity;
       this.entityService.create(temp).subscribe(id => {
