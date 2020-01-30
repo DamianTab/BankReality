@@ -29,7 +29,7 @@ public abstract class GenericRESTApi<T extends PrimaryKeyAccess> {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable(value = "id") int id, @RequestBody T entity) {
+    public ResponseEntity edit(@PathVariable(value = "id") int id, @RequestBody T entity) {
         if (dao.findById(id).isEmpty()) {
             throw new EntityNotFoundException();
 //            return ResponseEntity.notFound().build();
