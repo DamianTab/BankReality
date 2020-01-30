@@ -11,6 +11,7 @@ export class LegalPerson implements DbEntity<LegalPerson>{
     return new LegalPerson();
   }
 
-  toRow() {}
-  fromRow() {}
+  setId(num: number) {
+    this.login = num;
+  }
 }

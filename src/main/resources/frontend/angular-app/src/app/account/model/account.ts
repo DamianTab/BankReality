@@ -11,11 +11,7 @@ export class Account implements DbEntity<Account>{
     return new Account();
   }
 
-  toRow() {
-    const client = new Client();
-    client.login = this.clientId;
-  }
-  fromRow() {
-    this.clientId = this.client.login;
+  setId(num: number) {
+    this.accountNumber = num;
   }
 }

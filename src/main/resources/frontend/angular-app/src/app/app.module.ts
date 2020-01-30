@@ -10,6 +10,7 @@ import { NaturalPersonModule } from './natural-person/natural-person.module';
 import { EmiEstimateModule } from './emi-estimate/emi-estimate.module';
 import { LegalPersonModule } from './legal-person/legal-person.module';
 import { AccountModule } from './account/account.module';
+import { CreditModule } from './credit/credit.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AccountModule } from './account/account.module';
     NaturalPersonModule,
     LegalPersonModule,
     AccountModule,
+    CreditModule,
     AppRoutingModule
   ],
   providers: [],

@@ -52,9 +52,7 @@ export class EntityFormComponent<T extends DbEntity<T>> implements OnInit {
     if (this.isNew) {
       const temp = this.tempEntity;
       this.entityService.create(temp).subscribe(id => {
-        if (temp['id']) temp['id'] = id;
-        else if (temp['accountNumber']) temp['accountNumber'] = id;
-        else temp['login'] = id;
+        temp.setId(id);
         this.entityArray.push(temp);
       });
     } else {

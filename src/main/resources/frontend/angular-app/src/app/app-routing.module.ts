@@ -4,6 +4,7 @@ import { NaturalPersonComponent } from './natural-person/natural-person.componen
 import { EmiEstimateComponent } from './emi-estimate/emi-estimate.component';
 import { LegalPersonComponent } from './legal-person/legal-person.component';
 import { AccountComponent } from './account/account.component';
+import { CreditComponent } from './credit/credit.component';
 
 
 const routes: Routes = [
@@ -13,7 +14,7 @@ const routes: Routes = [
   {
     path: 'credit',
     children: [
-      // {path: 'emi', component: EmiEstimateComponent},
+      {path: '', component: CreditComponent},
       { path: 'emi', component: EmiEstimateComponent },
     ]
   },

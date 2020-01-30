@@ -1,5 +1,4 @@
 interface DbEntity<T> {
   buildNewObject(): T;
-  toRow();
-  fromRow();
+  setId(num: number);
 }
