@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NaturalPerson } from './model/natural-person';
 import { NaturalPersonService } from './service/natural-person.service';
+import { element } from 'protractor';
 
 @Component({
   selector: 'bk-natural-person',
@@ -21,6 +22,10 @@ export class NaturalPersonComponent implements OnInit {
 
   cols: any[];
 
+  colsNumber: any;
+
+  entityName: string = 'Natural Person';
+
   constructor(private entityService: NaturalPersonService) { }
 
   ngOnInit() {
@@ -30,14 +35,18 @@ export class NaturalPersonComponent implements OnInit {
 
 
     this.cols = [
-      { field: 'login', header: '1' },
+      { field: 'login', header: 'Login' },
       { field: 'address', header: '2' },
       { field: 'phoneNumber', header: '3' },
       { field: 'name', header: '4' },
       { field: 'surname', header: '5' },
       { field: 'idCard', header: '6' },
     ];
+    const size = this.cols.length;
+    this.colsNumber = Array(this.cols.length).fill(1).map((x, i) => i); // [0,1,2,3,4]
+    console.log(this.colsNumber)
   }
+
 
   showDialogToAdd() {
     this.isNew = true;
@@ -47,6 +56,12 @@ export class NaturalPersonComponent implements OnInit {
 
   save() {
     const entities = [...this.entityArray];
+    const lol = Object.keys(this.selectedEntity);
+    // console.log(Object.keys(this.selectedEntity));
+    console.log(lol[0]);
+    // console.log(this.cols.field[lol[0]]);
+
+    console.log(this.tempEntity);
     if (this.isNew) {
       const temp = this.tempEntity;
       this.entityService.create(temp).subscribe(id => {
@@ -78,11 +93,15 @@ export class NaturalPersonComponent implements OnInit {
 
   onRowSelect(event) {
     this.isNew = false;
-    this.tempEntity = this.cloneCar(event.data);
+    this.tempEntity = this.cloneEntity(event.data);
     this.displayDialog = true;
   }
 
-  private cloneCar(c: NaturalPerson): NaturalPerson {
+  isEquals(element, element2) {
+    return element === element2;
+  }
+
+  private cloneEntity(c: NaturalPerson): NaturalPerson {
     let entity = new NaturalPerson();
     for (let prop in c) {
       entity[prop] = c[prop];

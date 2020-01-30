@@ -1,6 +1,6 @@
 <p-table #tab [columns]="cols" [value]="entityArray" selectionMode="single" [(selection)]="selectedEntity" (onRowSelect)="onRowSelect($event)" [paginator]="true" [rows]="13">
   <ng-template pTemplate="caption">
-      List of Cars
+      List of {{entityName}}
       <div style="text-align: right">
         <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
         <input type="text" pInputText size="50" placeholder="Global Filter" (input)="tab.filterGlobal($event.target.value, 'contains')" style="width:auto">
@@ -28,9 +28,24 @@
   </ng-template>
 </p-table>
 
-<p-dialog header="Car Details" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '300px'}">
+<p-dialog header="{{entityName}} Details" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [modal]="true"  [style]="{width: '450px'}">
   <div class="ui-g ui-fluid" *ngIf="tempEntity">
+
+    <ng-container *ngFor="let item of tempEntity | keys">
       <div class="ui-g-12">
+        <div class="ui-g-4">
+          <!-- todo poprawic na poprawne nazwy z headera -->
+            <label for="myId">{{item}}:</label>
+        </div>
+        <div class="ui-g-8">
+            <input pInputText id="myId" [(ngModel)]="tempEntity[item]" />
+        </div>
+      </div>
+    </ng-container>
+
+
+
+    <!-- <div class="ui-g-12">
           <div class="ui-g-4">
               <label for="vin">idCard</label>
           </div>
@@ -61,8 +76,12 @@
           <div class="ui-g-8">
               <input pInputText id="color" [(ngModel)]="tempEntity.address" />
           </div>
-      </div>
+      </div> -->
+
+
+
   </div>
+
   <p-footer>
       <div class="ui-dialog-buttonpane ui-helper-clearfix">
           <button type="button" pButton icon="pi pi-times" (click)="delete()" label="Delete"></button>

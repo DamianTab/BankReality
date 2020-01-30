@@ -7,8 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ButtonModule} from 'primeng/button';
-import {InputTextModule} from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { ObjectKeysPipe } from '../shared/pipe/object-keys/object-keys.pipe';
+import { ObjectKeysModule } from '../shared/pipe/object-keys/object-keys.module';
 
 @NgModule({
   declarations: [NaturalPersonComponent],
@@ -21,8 +23,9 @@ import {InputTextModule} from 'primeng/inputtext';
     BrowserAnimationsModule,
     InputTextModule,
     ButtonModule,
+    ObjectKeysModule,
     FormsModule
   ],
-  exports: [NaturalPersonComponent]
+  exports: [NaturalPersonComponent],
 })
 export class NaturalPersonModule { }

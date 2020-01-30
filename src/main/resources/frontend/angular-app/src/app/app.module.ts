@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MenubarModule } from './menubar/menubar.module';
 import { NaturalPersonModule } from './natural-person/natural-person.module';
 import { EmiEstimateModule } from './emi-estimate/emi-estimate.module';
+import { ObjectKeysPipe } from './shared/pipe/object-keys/object-keys.pipe';
 
 @NgModule({
   declarations: [
